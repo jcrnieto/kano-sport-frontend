@@ -1,7 +1,13 @@
+import Footer from '../../components/admin/Footer'
+import Navbar from '../../components/admin/Navbar'
+import Students from '../../components/admin/Students'
+
 const Dashboard = () => {
     return (
         <div>
-            <p>esto es el dasboard completo de usuario admin</p>
+            <Navbar/>
+            <Students/>
+            <Footer/>
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CheckDni from './pages/CheckDni';
-import Students from './pages/admin/Students'; 
 import Dashboard from './pages/admin/Dashboard'; 
 import StudentForm from './pages/admin/StudentForm'; 
 import Login from './pages/Login';
@@ -18,7 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route element={ <ProtectedRoute canActivate={user}/>} >
           <Route path="/admin" element={<Dashboard />} />
-          
+          <Route path="/formulario-alumno" element={<StudentForm />} />
         </Route>
       </Routes>
     </Router>
@@ -26,5 +25,3 @@ function App() {
 }
 
 export default App;
-{/* <Route path="/student" element={<Students />} />
-<Route path="/studentForm" element={<StudentForm />} /> */}
