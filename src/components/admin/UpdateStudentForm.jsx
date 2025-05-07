@@ -37,26 +37,54 @@ const UpdateStudentForm = ({ student, onSuccess }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <p>
-        <label>Nombre: </label>
-        <input name="name" value={formData.name} onChange={handleChange} />
-      </p>
-      <p>
-        <label>Apellido: </label>
-        <input name="lastName" value={formData.lastName} onChange={handleChange} />
-      </p>
-      <p>
-        <label>Teléfono: </label>
-        <input name="phone" value={formData.phone} onChange={handleChange} />
-      </p>
-      <p>
-        <label>Dirección: </label>
-        <input name="address" value={formData.address} onChange={handleChange} />
-      </p>
-      <button type="submit">Guardar Cambios</button>
-    </form>
+    <div className="w-full max-w-5xl bg-white px-6 py-4 rounded-md shadow-md text-black mx-auto mt-6">
+      <h3 className="text-xl font-bold mb-4 text-center">Actualizar Datos del Alumno</h3>
+  
+      <form onSubmit={handleSubmit}>
+        <div className="flex flex-wrap gap-4 justify-center items-center">
+          <input
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Nombre"
+            className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
+          />
+  
+          <input
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
+            placeholder="Apellido"
+            className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
+          />
+  
+          <input
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            placeholder="Teléfono"
+            className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
+          />
+  
+          <input
+            name="address"
+            value={formData.address}
+            onChange={handleChange}
+            placeholder="Dirección"
+            className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
+          />
+  
+          <button
+            type="submit"
+            className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition min-w-[150px]"
+          >
+            Guardar Cambios
+          </button>
+        </div>
+      </form>
+    </div>
   );
+  
 };
 
 export default UpdateStudentForm;

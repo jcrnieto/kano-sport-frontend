@@ -27,7 +27,10 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogout}>
+    <button
+       onClick={handleLogout}
+       className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+    >
       Cerrar sesión
     </button>
   );

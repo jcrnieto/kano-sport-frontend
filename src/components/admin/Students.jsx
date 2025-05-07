@@ -17,7 +17,7 @@ const Students = () => {
                 const user = JSON.parse(localStorage.getItem('user'));
                 const token = user?.token;
     
-                const response = await axiosInstance.get('http://localhost:3000/api/student/getAllStudent', {
+                const response = await axiosInstance.get('/student/getAllStudent', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -38,25 +38,36 @@ const Students = () => {
     }, [navigate]);
 
     return (
-        <div>
-            <p>Acá me traigo todos los alumnos registrados</p>
-            
-            <button onClick={handleAddStudent}>
-                Agregar alumno
+        <div className="text-black bg-[radial-gradient(circle_at_bottom_left,_#a09d9d,_#f3b3b3,_transparent_60%),radial-gradient(circle_at_bottom_right,_#ff9999,_#cc0000,_transparent_60%),radial-gradient(circle_at_top_left,_#cc3333,_#990000,_transparent_60%),radial-gradient(circle_at_top_right,_#660000,_#330000)] min-h-screen px-4 py-8">
+          
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-2xl font-bold">Listado de Alumnos</h2>
+            <button
+              onClick={handleAddStudent}
+              className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800 transition"
+            >
+              Agregar alumno
             </button>
-
-            <ul style={{ marginTop: '20px' }}>
-                {students.map(student => (
-                    <li key={student.id}>
-                        <Link to={`/alumno/${student.id}`}>
-                            {student.name} {student.lastName}- {student.dni} - 
-                        </Link>
-                    </li>
-                   
-                ))}
-            </ul>
+          </div>
+      
+          <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {students.map((student) => (
+              <Link
+                to={`/alumno/${student.id}`}
+                key={student.id}
+                className="block bg-white bg-opacity-80 backdrop-blur-sm rounded-lg shadow-md p-4 hover:scale-[1.02] hover:shadow-lg transition transform duration-200"
+              >
+                <h3 className="text-lg font-semibold mb-1">
+                  {student.name} {student.lastName}
+                </h3>
+                <p className="text-sm">DNI: {student.dni}</p>
+                <p className="text-sm">Celular: {student.phone}</p>
+              </Link>
+            ))}
+          </div>
         </div>
     );
+      
 }
 
 export default Students;

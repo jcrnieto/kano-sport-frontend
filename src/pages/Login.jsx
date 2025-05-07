@@ -38,17 +38,43 @@ const Login = () => {
         }
     };
 
-    return <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="mb-3">
-            <label>Usuario</label>
-            <input type="text" className="form-control" {...register('username')} />
+    return (
+        <div className="text-white bg-[radial-gradient(circle_at_bottom_left,_#a09d9d,_#f3b3b3,_transparent_60%),radial-gradient(circle_at_bottom_right,_#ff9999,_#cc0000,_transparent_60%),radial-gradient(circle_at_top_left,_#cc3333,_#990000,_transparent_60%),radial-gradient(circle_at_top_right,_#660000,_#330000)] flex items-center justify-center min-h-screen px-4">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="bg-white p-6 rounded-lg shadow-md w-full max-w-md"
+          >
+            <div className="mb-4 flex flex-col md:flex-row md:items-center">
+              <label className="text-lg font-semibold text-black md:w-32 mb-2 md:mb-0">
+                Usuario
+              </label>
+              <input
+                type="text"
+                className="border border-black rounded px-4 py-2 text-black w-full"
+                {...register('username')}
+              />
+            </div>
+            <div className="mb-4 flex flex-col md:flex-row md:items-center">
+              <label className="text-lg font-semibold text-black md:w-32 mb-2 md:mb-0">
+                Password
+              </label>
+              <input
+                type="password"
+                className="border border-black rounded px-4 py-2 text-black w-full"
+                {...register('password')}
+              />
+            </div>
+            <div className="text-center">
+              <input
+                type="submit"
+                value="Enviar"
+                className="px-5 py-2 bg-black text-white rounded-md hover:bg-neutral-800 transition"
+              />
+            </div>
+          </form>
         </div>
-        <div className="mb-3">
-            <label>Password</label>
-            <input type="password" className="form-control" {...register('password')} />
-        </div>
-        <input type="submit" value="Enviar" />
-    </form>
+      );
+      
 }
 
 export default Login;

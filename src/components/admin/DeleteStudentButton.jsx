@@ -20,7 +20,7 @@ const DeleteStudentButton = ({ studentId }) => {
       const token = user?.token;
 
       try {
-        await axiosInstance.delete(`http://localhost:3000/api/student/deleteId?deleteId=${studentId}`, {
+        await axiosInstance.delete(`/student/deleteId?deleteId=${studentId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -33,7 +33,11 @@ const DeleteStudentButton = ({ studentId }) => {
     }
   };
 
-  return <button onClick={handleDelete}>Eliminar</button>;
+  return <button 
+            onClick={handleDelete}
+            className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md transition"
+          >Eliminar
+          </button>;
 };
 
 export default DeleteStudentButton;

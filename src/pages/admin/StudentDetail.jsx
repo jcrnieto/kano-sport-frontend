@@ -18,7 +18,7 @@ const StudentDetail = () => {
     const token = user?.token;
 
     try {
-      const response = await axiosInstance.get(`http://localhost:3000/api/student/id?id=${id}`, {
+      const response = await axiosInstance.get(`/student/id?id=${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setStudent(response.data.data);
@@ -39,34 +39,43 @@ const StudentDetail = () => {
   if (!student) return <p>Cargando datos del alumno...</p>;
 
   return (
-    <div>
-      <h2>Detalle del Alumno</h2>
-      <p>Nombre: {student.name}</p>
-      <p>Apellido: {student.lastName}</p>
-      <p>DNI: {student.dni}</p>
-      <p>Telefono: {student.phone}</p>
-      <p>Direccion: {student.address}</p>
+    <div className="text-black bg-[radial-gradient(circle_at_bottom_left,_#a09d9d,_#f3b3b3,_transparent_60%),radial-gradient(circle_at_bottom_right,_#ff9999,_#cc0000,_transparent_60%),radial-gradient(circle_at_top_left,_#cc3333,_#990000,_transparent_60%),radial-gradient(circle_at_top_right,_#660000,_#330000)] flex flex-col items-center justify-center min-h-screen px-4 text-center">
+      <h2 className="text-4xl font-bold mb-4">Detalle del Alumno</h2>
+      <p className="text-lg">Nombre: {student.name}</p>
+      <p className="text-lg">Apellido: {student.lastName}</p>
+      <p className="text-lg">DNI: {student.dni}</p>
+      <p className="text-lg">Telefono: {student.phone}</p>
+      <p className="text-lg mb-4">Direccion: {student.address}</p>
+      
+      <div className="flex flex-wrap gap-4 justify-center mb-6">
+        <button 
+            onClick={() => setShowForm(!showForm)}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition"
+        >
+          {showForm ? 'Cancelar' : 'Registrar cuota'}
+        </button>
 
-      <button onClick={() => setShowForm(!showForm)}>
-        {showForm ? 'Cancelar' : 'Registrar cuota'}
-      </button>
-
-      <DeleteStudentButton studentId={student.id} />
-
-      <button onClick={() => setShowUpdateForm(!showUpdateForm)}>
-        {showUpdateForm ? 'Cancelar Edición' : 'Actualizar Datos'}
-      </button>
-
-      {showUpdateForm && (
-        <UpdateStudentForm
-          student={student}
-          onSuccess={() => {
-            setShowUpdateForm(false);
-            fetchStudent();
-          }}
+        <DeleteStudentButton
+           studentId={student.id} 
         />
-      )}
 
+        <button 
+          onClick={() => setShowUpdateForm(!showUpdateForm)}
+          className="bg-yellow-600 hover:bg-yellow-700 text-white px-4 py-2 rounded-md transition"
+        >
+          {showUpdateForm ? 'Cancelar Edición' : 'Actualizar Datos'}
+        </button>
+
+        {showUpdateForm && (
+          <UpdateStudentForm
+            student={student}
+            onSuccess={() => {
+              setShowUpdateForm(false);
+              fetchStudent();
+            }}
+          />
+        )}
+      </div>
 
 
       {showForm && (
@@ -79,10 +88,10 @@ const StudentDetail = () => {
         />
       )}
 
-      <hr style={{ margin: '20px 0' }} />
-      <h3>Historial de Cuotas</h3>
+      <hr className="my-6 border-black w-full max-w-xl" />
+      <h3 className="text-2xl font-semibold mb-3">Historial de Cuotas</h3>
       {student.Quota && student.Quota.length > 0 ? (
-        <ul>
+        <ul className="text-lg">
           {student.Quota.map((q) => (
             <li key={q.id}>
               Pago: {q.paymentDate} | Vencimiento: {q.expirationDate} | Monto: ${q.amount}
@@ -90,7 +99,7 @@ const StudentDetail = () => {
           ))}
         </ul>
       ) : (
-        <p>Este alumno no tiene cuotas registradas.</p>
+        <p className="text-lg">Este alumno no tiene cuotas registradas.</p>
       )}
     </div>
   );

@@ -12,7 +12,7 @@ const PayOfQuota = ({ studentId, onSuccess }) => {
 
     try {
       await axiosInstance.post(
-        'http://localhost:3000/api/quota/createQuota',
+        '/quota/createQuota',
         {
           student_id: studentId,
           paymentDate,
@@ -32,14 +32,42 @@ const PayOfQuota = ({ studentId, onSuccess }) => {
   };
 
   return (
-    <div>
-      <h3>Registrar nueva cuota</h3>
-      <input type="date" value={paymentDate} onChange={(e) => setPaymentDate(e.target.value)} />
-      <input type="date" value={expirationDate} onChange={(e) => setExpirationDate(e.target.value)} />
-      <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="Monto" />
-      <button onClick={handleSubmit}>Registrar</button>
+    <div className="w-full max-w-5xl bg-white px-6 py-4 rounded-md shadow-md text-black mx-auto">
+      <h3 className="text-xl font-bold mb-4 text-center">Registrar nueva cuota</h3>
+  
+      <div className="flex flex-wrap gap-4 justify-center items-center">
+        <input
+          type="date"
+          value={paymentDate}
+          onChange={(e) => setPaymentDate(e.target.value)}
+          className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
+        />
+  
+        <input
+          type="date"
+          value={expirationDate}
+          onChange={(e) => setExpirationDate(e.target.value)}
+          className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
+        />
+  
+        <input
+          type="number"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Monto"
+          className="border border-gray-400 rounded px-4 py-2 min-w-[120px]"
+        />
+  
+        <button
+          onClick={handleSubmit}
+          className="bg-black text-white py-2 px-4 rounded hover:bg-gray-800 transition min-w-[120px]"
+        >
+          Registrar
+        </button>
+      </div>
     </div>
   );
+  
 };
 
 export default PayOfQuota;
