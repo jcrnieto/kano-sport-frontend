@@ -10,7 +10,7 @@ const Login = () => {
     const onSubmit = async (data) => {
         try {
             console.log("data", data)
-            const response = await axiosInstance('/admin/login',{
+            const response = await axiosInstance.post('/admin/login',{
               username: data.username,
               password: data.password
             }, {
