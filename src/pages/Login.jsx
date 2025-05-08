@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-//import { useNavigate } from "react-router-dom";
+import axiosInstance from '../context/axiosInstance.js'
 
 const Login = () => {
 
@@ -10,7 +10,7 @@ const Login = () => {
     const onSubmit = async (data) => {
         try {
             console.log("data", data)
-            const response = await fetch('http://localhost:3000/api/admin/login', {
+            const response = await axiosInstance('/admin/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
