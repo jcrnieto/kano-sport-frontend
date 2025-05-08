@@ -51,7 +51,7 @@ const Students = () => {
           </div>
       
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {students.map((student) => (
+            {Array.isArray(students) && students.map((student) => (
               <Link
                 to={`/alumno/${student.id}`}
                 key={student.id}
