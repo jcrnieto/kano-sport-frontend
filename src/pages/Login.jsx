@@ -11,6 +11,9 @@ const Login = () => {
         try {
             console.log("data", data)
             const response = await axiosInstance.post('/admin/login',{
+              username:data.username,
+              password:data.password
+            }, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
