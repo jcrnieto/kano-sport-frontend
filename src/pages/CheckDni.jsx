@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function CheckDni() {
+
+  const navigate = useNavigate(); 
+
   const [dni, setDni] = useState('');
   const [status, setStatus] = useState(null);
   const [showStatus, setShowStatus] = useState(false);
@@ -37,7 +41,15 @@ export default function CheckDni() {
   };
 
   return (
-    <div className="text-white bg-[radial-gradient(circle_at_bottom_left,_#a09d9d,_#f3b3b3,_transparent_60%),radial-gradient(circle_at_bottom_right,_#ff9999,_#cc0000,_transparent_60%),radial-gradient(circle_at_top_left,_#cc3333,_#990000,_transparent_60%),radial-gradient(circle_at_top_right,_#660000,_#330000)] flex flex-col items-center justify-center min-h-screen px-4 text-center">
+    <div className="relative text-white bg-[radial-gradient(circle_at_bottom_left,_#a09d9d,_#f3b3b3,_transparent_60%),radial-gradient(circle_at_bottom_right,_#ff9999,_#cc0000,_transparent_60%),radial-gradient(circle_at_top_left,_#cc3333,_#990000,_transparent_60%),radial-gradient(circle_at_top_right,_#660000,_#330000)] flex flex-col items-center justify-center min-h-screen px-4 text-center">
+
+      <button
+        onClick={() => navigate('/login')}
+        className="absolute top-4 right-4 px-4 py-2 bg-black text-white rounded hover:bg-neutral-800 transition"
+      >
+        Admin
+      </button>
+
       <h2 className="text-5xl font-semibold mb-6 text-black">INGRESE DNI</h2>
 
       <div className="flex flex-col sm:flex-row items-center gap-4">
