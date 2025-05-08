@@ -8,37 +8,27 @@ const Login = () => {
     //const navigate = useNavigate();
 
     const onSubmit = async (data) => {
-        try {
-            console.log("data", data)
-            const response = await axiosInstance.post('/admin/login',{
-              username:data.username,
-              password:data.password
-            }, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-            
-            if (!response.ok) {
-                throw new Error('Credenciales incorrectas');
-            }
-
-            const result = await response.json();
-
-            localStorage.setItem('user', JSON.stringify({
-                username: data.username,
-                token: result.token
-            }));
-
-            // navigate('/admin');
-            window.location.href = '/admin';
-        } catch (error) {
-            console.error('Error al iniciar sesión:', error.message);
-            // Opcional: mostrar error en pantalla
-            alert('Email o password incorrecto');
-        }
+      try {
+    
+        const response = await axiosInstance.post('/admin/login', {
+          username: data.username,
+          password: data.password
+        });
+    
+        console.log("Respuesta del backend:", response.data);
+    
+        const result = response.data;
+    
+        localStorage.setItem('user', JSON.stringify({
+          username: data.username,
+          token: result.token
+        }));
+    
+        window.location.href = '/admin';
+      } catch (error) {
+        console.error('Error al iniciar sesión:', error.response?.data || error.message);
+        alert('Email o password incorrecto');
+      }
     };
 
     return (
