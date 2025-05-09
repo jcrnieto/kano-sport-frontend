@@ -1,6 +1,6 @@
 const Footer = () => {
     return (
-        <footer className="bg-white text-black py-6">
+        <footer className="bg-gray-300 text-black py-6 shadow-inner border-t border-gray-600">
             <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
                 <p className="text-sm">&copy; 2025 Kano Sport. Todos los derechos reservados.</p>
                 <div className="flex gap-4 mt-4 sm:mt-0">

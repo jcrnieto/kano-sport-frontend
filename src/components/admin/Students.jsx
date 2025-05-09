@@ -55,7 +55,7 @@ const Students = () => {
               <Link
                 to={`/alumno/${student.id}`}
                 key={student.id}
-                className="block bg-white bg-opacity-80 backdrop-blur-sm rounded-lg shadow-md p-4 hover:scale-[1.02] hover:shadow-lg transition transform duration-200"
+                className="block bg-gray-300 bg-opacity-80 backdrop-blur-sm rounded-lg shadow-md p-4 hover:scale-[1.02] hover:shadow-lg transition transform duration-200"
               >
                 <h3 className="text-lg font-semibold mb-1">
                   {student.name} {student.lastName}

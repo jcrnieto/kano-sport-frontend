@@ -35,7 +35,7 @@ const Login = () => {
         <div className="text-white bg-[radial-gradient(circle_at_bottom_left,_#a09d9d,_#f3b3b3,_transparent_60%),radial-gradient(circle_at_bottom_right,_#ff9999,_#cc0000,_transparent_60%),radial-gradient(circle_at_top_left,_#cc3333,_#990000,_transparent_60%),radial-gradient(circle_at_top_right,_#660000,_#330000)] flex items-center justify-center min-h-screen px-4">
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="bg-white p-6 rounded-lg shadow-md w-full max-w-md"
+            className="bg-gray-300 p-6 rounded-lg shadow-md w-full max-w-md"
           >
             <div className="mb-4 flex flex-col md:flex-row md:items-center">
               <label className="text-lg font-semibold text-black md:w-32 mb-2 md:mb-0">
