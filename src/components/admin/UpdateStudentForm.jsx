@@ -24,7 +24,8 @@ const UpdateStudentForm = ({ student, onSuccess }) => {
     const token = user?.token;
 
     try {
-      await axiosInstance.put(`http://localhost:3000/api/student/${student.id}`, formData, {
+      console.log('formdata',formData)
+      await axiosInstance.patch(`/student/${student.id}`, formData, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
