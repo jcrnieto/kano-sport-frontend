@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../images/img-logo-kano.PNG';
 
 export default function CheckDni() {
 
@@ -12,7 +13,7 @@ export default function CheckDni() {
 
   const handleCheck = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL_LOCAL}/api/student/dni?dni=${dni}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL_PROD}/api/student/dni?dni=${dni}`);
       const student = response.data.data;
 
       if (student && student.Quota && student.Quota.length > 0) {
@@ -50,7 +51,13 @@ export default function CheckDni() {
         Admin
       </button>
 
-      <h2 className="text-5xl font-semibold mb-6 text-black">INGRESE DNI</h2>
+      <div className="mb-6 flex flex-col items-center">
+        <img src={Logo} alt="Logo Kano" className="h-50 w-auto cursor-pointer" />
+
+        <h1 className="text-4xl font-bold text-black">Kano Sport</h1>
+      </div>
+
+      <h2 className="text-3xl font-semibold mb-6 text-black">INGRESE DNI</h2>
 
       <div className="flex flex-col sm:flex-row items-center gap-4">
         <input
