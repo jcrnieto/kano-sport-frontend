@@ -19,6 +19,7 @@ const PayOfQuota = ({ studentId, onSuccess }) => {
           student_id: studentId,
           paymentDate,
           expirationDate,
+          plan: frequency,
           amount: parseFloat(amount),
         },
         {
@@ -66,10 +67,10 @@ const PayOfQuota = ({ studentId, onSuccess }) => {
           className="border border-gray-400 rounded px-4 py-2 min-w-[150px] bg-white"
         >
           <option value="">Plan</option>
-          <option value="2x">2 veces por semana</option>
-          <option value="3x">3 veces por semana</option>
-          <option value="4x">4 veces por semana</option>
-          <option value="free">Libre</option>
+          <option value="2 x semana">2 veces por semana</option>
+          <option value="3 x semana">3 veces por semana</option>
+          <option value="4 x semana">4 veces por semana</option>
+          <option value="Libre">Libre</option>
         </select>
 
         <button
