@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../images/logo-kano-sport.PNG';
+import Logo from '../images/logo-kano-sport.png';
 
 export default function CheckDni() {
 

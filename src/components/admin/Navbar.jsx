@@ -1,6 +1,6 @@
 import LogoutButton from "./LogoutButton";
 import SearchByName from "./SearchByName";
-import Logo from '../../images/logo-kano-sport.PNG';
+import Logo from '../../images/logo-kano-sport.png';
 import { Link } from 'react-router-dom';
 import { useSearch } from "../../context/SearchContext";
 
