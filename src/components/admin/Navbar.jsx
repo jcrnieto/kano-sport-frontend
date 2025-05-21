@@ -1,44 +1,38 @@
 import LogoutButton from "./LogoutButton";
-import Logo from '../../images/img-logo-kano.PNG';
-import { Link } from 'react-router-dom'
+import SearchByName from "./SearchByName";
+import Logo from '../../images/logo-kano-sport.PNG';
+import { Link } from 'react-router-dom';
+import { useSearch } from "../../context/SearchContext";
 
 const Navbar = () => {
+
+    const { setSearchResults } = useSearch(); // acá accedés al setter
+
+    const handleLogoClick = () => {
+        setSearchResults(null); // limpia la búsqueda
+    };
+
     return (
         <nav className="bg-gray-300 shadow-md p-4">
-            <div className="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-4">
-
-                <div className="flex items-center flex-shrink-0 text-black text-xl font-bold">
-                    <Link to="/admin">
-                        <img src={Logo} alt="Logo Kano" className="h-18 w-auto cursor-pointer" />
-                    </Link>
-                </div>
-
-                {/* Buscador (oculto en pantallas chicas) */}
-                <div className="hidden md:flex flex-1 justify-center">
-                    <input
-                        type="text"
-                        placeholder="Buscar..."
-                        className="border border-gray-300 rounded px-4 py-2 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                </div>
-
-                {/* Login */}
-                <div className="flex justify-end w-full md:w-auto">
-                    <LogoutButton />
-                </div>
+            <div className="max-w-7xl mx-auto flex flex-col items-center justify-center gap-4 md:flex-row md:justify-between">
+            
+            <div className="flex items-center flex-shrink-0 text-black text-xl font-bold">
+                <Link to="/admin" onClick={handleLogoClick}>
+                <img src={Logo} alt="Logo Kano" className="h-18 w-auto cursor-pointer" />
+                </Link>
             </div>
 
-            {/* Buscador visible solo en pantallas pequeñas */}
-            <div className="block md:hidden mt-4">
-                <input
-                    type="text"
-                    placeholder="Buscar..."
-                    className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+            <div className="w-full md:w-auto flex justify-center md:mt-0">
+                <SearchByName />
+            </div>
+
+            <div className="flex justify-center w-full md:justify-end md:w-auto">
+                <LogoutButton />
+            </div>
+            
             </div>
         </nav>
-
-    )
+);
 }
 
 export default Navbar

@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import axiosInstance from '../context/axiosInstance.js'
+import axiosInstance from '../instance/axiosInstance.js'
 
 const Login = () => {
 

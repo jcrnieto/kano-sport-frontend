@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../images/img-logo-kano.PNG';
+import Logo from '../images/logo-kano-sport.PNG';
 
 export default function CheckDni() {
 
@@ -13,7 +13,7 @@ export default function CheckDni() {
 
   const handleCheck = async () => {
     try {
-      const response = await axios.get(`${import.meta.env.VITE_API_URL_PROD}/api/student/dni?dni=${dni}`);
+      const response = await axios.get(`${import.meta.env.VITE_API_URL_LOCAL}/api/student/dni?dni=${dni}`);
       const student = response.data.data;
 
       if (student && student.Quota && student.Quota.length > 0) {
@@ -51,10 +51,10 @@ export default function CheckDni() {
         Admin
       </button>
 
-      <div className="mb-6 flex flex-col items-center">
+      <div className="mb-2 flex flex-col items-center">
         <img src={Logo} alt="Logo Kano" className="h-50 w-auto cursor-pointer" />
 
-        <h1 className="text-4xl font-bold text-black">Kano Sport</h1>
+        <h1 className="text-4xl font-bold text-black mb-14">Kano Sport</h1>
       </div>
 
       <h2 className="text-3xl font-semibold mb-6 text-black">INGRESE DNI</h2>
@@ -63,7 +63,11 @@ export default function CheckDni() {
         <input
           type="text"
           value={dni}
-          onChange={(e) => setDni(e.target.value)}
+          onChange={(e) => {
+            const value = e.target.value;
+            if (/^\d*$/.test(value)) {
+            setDni(value);
+          }}}
           placeholder="DNI"
           className="border border-black rounded px-4 py-2 text-black"
         />

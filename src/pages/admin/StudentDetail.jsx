@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import axiosInstance from '../../context/axiosInstance';
+import axiosInstance from '../../instance/axiosInstance';
 import PayOfQuota from '../../components/admin/PayOfQuota';
 import DeleteStudentButton from '../../components/admin/DeleteStudentButton';
 import UpdateStudentForm from '../../components/admin/UpdateStudentForm';

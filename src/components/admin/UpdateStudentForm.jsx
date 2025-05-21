@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import axiosInstance from '../../context/axiosInstance';
+import axiosInstance from '../../instance/axiosInstance';
 import Swal from 'sweetalert2';
 
 const UpdateStudentForm = ({ student, onSuccess }) => {
   const [formData, setFormData] = useState({
-    name: student.name,
-    lastName: student.lastName,
     phone: student.phone,
     address: student.address,
   });
@@ -43,22 +41,7 @@ const UpdateStudentForm = ({ student, onSuccess }) => {
   
       <form onSubmit={handleSubmit}>
         <div className="flex flex-wrap gap-4 justify-center items-center">
-          <input
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Nombre"
-            className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
-          />
-  
-          <input
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            placeholder="Apellido"
-            className="border border-gray-400 rounded px-4 py-2 min-w-[150px]"
-          />
-  
+          
           <input
             name="phone"
             value={formData.phone}

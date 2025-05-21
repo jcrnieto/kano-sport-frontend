@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
-import axiosInstance from '../../context/axiosInstance';
+import axiosInstance from '../../instance/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
 const StudentForm = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const navigate = useNavigate();
 
   const onSubmit = async (data) => {
@@ -28,59 +28,97 @@ const StudentForm = () => {
         <div className="flex flex-col text-left">
           <label className="font-medium mb-1"> DNI:</label>
           <input
-             type="text" {...register('dni')}
+             type="text"
+             {...register('dni', {
+                required: true,
+                pattern: {
+                  value: /^\d+$/,
+                  message: "Solo se permiten números",
+                }
+            })} 
              required
              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.dni && <p className="text-red-500 text-sm">{errors.dni.message}</p>}
         </div>
 
         <div className="flex flex-col text-left">
           <label className="font-medium mb-1">Nombre:</label>
           <input
-             type="text" {...register('name')}
+             type="text"
+             {...register('name', {
+                required: true,
+                pattern: {
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                message: "Solo se permiten letras",
+              }
+              })}
              required 
              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
         </div>
 
         <div className="flex flex-col text-left">
           <label className="font-medium mb-1">Apellido:</label>
           <input
-             type="text" {...register('lastName')}
+             type="text"
+             {...register('lastName', {
+                required: true,
+                pattern: {
+                value: /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/,
+                message: "Solo se permiten letras",
+              }
+             })}
              required
              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.lastName && <p className="text-red-500 text-sm">{errors.lastName.message}</p>}
         </div>
 
         <div className="flex flex-col text-left">
           <label className="font-medium mb-1">Fecha de nacimiento:</label>
           <input
-             type="date" {...register('dateOfBirth')}
+             type="date"
+             {...register("dateOfBirth", { required: "La fecha es obligatoria" })}
              required
              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.dateOfBirth && <p className="text-red-500 text-sm">{errors.dateOfBirth.message}</p>}
         </div>
 
         <div className="flex flex-col text-left">
           <label className="font-medium mb-1">Teléfono:</label>
           <input
-             type="text" {...register('phone')}
+             type="text"
+             {...register('phone', {
+                required: true,
+                pattern: {
+                value: /^\d+$/,
+                message: "Solo se permiten números",
+              }
+             })}
              required
              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
         </div>
 
         <div className="flex flex-col text-left">
           <label className="font-medium mb-1">Dirección:</label>
           <input
-             type="text" {...register('address')}
+             type="text"
+             {...register("address", { required: "La dirección es obligatoria" })}
              required
              className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.address && <p className="text-red-500 text-sm">{errors.address.message}</p>}
         </div>
+
         <button type="submit" className="px-5 py-2 bg-black text-white rounded-md hover:bg-neutral-800 transition">
           Crear Alumno
         </button>
+        
       </form>
     </div>
   );

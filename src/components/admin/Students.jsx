@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axiosInstance from '../../context/axiosInstance';
-
+import axiosInstance from '../../instance/axiosInstance';
+import { useSearch } from '../../context/SearchContext';
 
 const Students = () => {
     const navigate = useNavigate();
     const [students, setStudents] = useState([]);
-
+    const { searchResults } = useSearch();
+    
     const handleAddStudent = () => {
         navigate('/formulario-alumno');
     }
@@ -37,6 +38,8 @@ const Students = () => {
         fetchStudents();
     }, [navigate]);
 
+    const studentsToRender = searchResults || students;
+
     return (
         <div className="text-black bg-[radial-gradient(circle_at_bottom_left,_#a09d9d,_#f3b3b3,_transparent_60%),radial-gradient(circle_at_bottom_right,_#ff9999,_#cc0000,_transparent_60%),radial-gradient(circle_at_top_left,_#cc3333,_#990000,_transparent_60%),radial-gradient(circle_at_top_right,_#660000,_#330000)] min-h-screen px-4 py-8">
           
@@ -51,7 +54,7 @@ const Students = () => {
           </div>
       
           <div className="grid gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-            {Array.isArray(students) && students.map((student) => (
+            {Array.isArray(studentsToRender) && studentsToRender.map((student) => (
               <Link
                 to={`/alumno/${student.id}`}
                 key={student.id}

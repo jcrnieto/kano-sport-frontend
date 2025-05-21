@@ -1,5 +1,5 @@
 import Swal from 'sweetalert2';
-import axiosInstance from '../../context/axiosInstance';
+import axiosInstance from '../../instance/axiosInstance';
 import { useNavigate } from 'react-router-dom';
 
 const DeleteStudentButton = ({ studentId }) => {
